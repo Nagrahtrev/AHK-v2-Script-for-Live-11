@@ -1,12 +1,9 @@
-﻿#Requires AutoHotkey v2.0
+#Requires AutoHotkey v2.0
 
 ; AHK Script for Ableton Live 11 by nova+z (aka. Nagrahtrev)
 ; ※ THIS SCRIPT REQUIRES AUTOHOTKEY V2 ※
 
 Persistent
-
-; The following directives only work on a specific process, such as "Ableton Live 11 Suite.exe", and you can totally change it.
-#HotIf WinActive("ahk_exe Ableton Live 11 Suite.exe")
 
 ; You can change any hotkey to suit your preferences.
 ; Here is the list of keynames: https://www.autohotkey.com/docs/v2/KeyList.htm
@@ -22,6 +19,7 @@ CapsLock::
           SetCapsLockState !GetKeyState("CapsLock", "T") ? True : False
           }
 }
+#HotIf GetKeyState("CapsLock", "P")
 Device(Name)
 {
      Send "^f"
@@ -37,17 +35,20 @@ Device(Name)
      1::SendInput Device("EQ Eight")
      2::SendInput Device("Bass Phat Rack.adg")
      3::SendInput Device("OTT.adv")
-     4::SendInput Device("")
+     4::SendInput Device("Granulator II.amxd")
      5::SendInput Device("")
      6::SendInput Device("")
-     7::SendInput Device("Granulator II.amxd")
+     7::SendInput Device("")
      8::SendInput Device("")
      9::SendInput Device("")
      0::SendInput Device("")
-     q::SendInput Device("vst Nexus")
-     w::SendInput Device("vst3 Serum")
-     e::SendInput Device("")
-     r::SendInput Device("")
+     q::SendInput Device("")
+     w::SendInput Device("")
+     e::SendInput Device("vst Nexus")
+     r::SendInput Device("vst3 Serum ")
+
+; The following directives only work on a specific process, such as "Ableton Live 11 Suite.exe", and you can totally change it
+#HotIf WinActive("ahk_exe Ableton Live 11 Suite.exe")
 
 ; Quick Search VST Plugins | ALT + [F]
 !f::
