@@ -24,9 +24,8 @@ Device(Name)
 {
      Send "^f"
      Send Name
-     Sleep 175
+     Sleep 200
      Send "{Down}"
-     Sleep 10
      Send "{Enter}"
 }
 
@@ -45,7 +44,7 @@ Device(Name)
      q::SendInput Device("")
      w::SendInput Device("")
      e::SendInput Device("vst Nexus")
-     r::SendInput Device("vst3 Serum ")
+     r::SendInput Device("vst3 Serum")
 
 ; The following directives only work on a specific process, such as "Ableton Live 11 Suite.exe", and you can totally change it
 #HotIf WinActive("ahk_exe Ableton Live 11 Suite.exe")
