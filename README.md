@@ -21,7 +21,7 @@ I emulated the source code of [Live Enhancement Suite](https://github.com/LiveEn
   
 2. Run `Ableton-Shortcuts.ahk` with AutoHotKey v2
   
-3. Then you can start makeing a DOOOOOPE song...  
+3. Then you can start making a DOOOOOPE song...  
   
 ## Features
   
