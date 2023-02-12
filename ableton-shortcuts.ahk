@@ -17,8 +17,12 @@ Persistent
 +F12::Suspend
 #SuspendExempt False
 
-; Auto Switch to English IME when Ableton Live 11 is activated
-GroupAdd "English", "ahk_id 7538222"
+; Auto Switch to English IME when Ableton Live is activated
+     ;; You can change the process name below, such as "Ableton Live 11 Suite.exe"
+     ;; If you want to add any other process, please follow this format and type the command on the next line
+     ;; GroupAdd "Process_EN", "ahk_exe [ProcessName]"
+GroupAdd "Process_EN", "ahk_exe Ableton Live 11 Suite.exe"
+
 MapIME := Map("EN", 67699721)
 GetCurrentIMEID()
 {
@@ -27,14 +31,17 @@ GetCurrentIMEID()
      InputLocaleID := DllCall("GetKeyboardLayout", "UInt", ThreadID, "UInt")
      Return InputLocaleID
 }
-SetIME(ime_id)
+SetIME(IMEID)
 {
-     WinTitle := WinGetTitle("ahk_group English")
-     PostMessage(0x50, 0, ime_id,, WinTitle )
+     WinTitle := WinGetTitle("A")
+     PostMessage 0x50, 0, IMEID, , WinTitle     
 }
-~LButton::
+Loop
 {
+     WinWaitActive("ahk_group Process_EN")    
+     CurrentWinID := WinGetID("A")
      SetIME(MapIME["EN"])
+     WinWaitNotActive(CurrentWinID)
 }
 
 ; Quick Insert Plugins | CAPSLOCK + [KeyName] (CapsLock will still work properly)
