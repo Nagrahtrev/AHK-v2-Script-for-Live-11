@@ -107,11 +107,11 @@ MyFunc(ThisHotkey)
      SetTitleMatchMode 3
      if RegExMatch(P_Process,"Ableton")
      {
-	     if RegExMatch(P_Class,"AbletonVstPlugClass") or RegExMatch(P_Class,"Vst3PlugWindow") or RegExMatch(P_Class,"JUCE_")
-	     {
-		     WinClose P_Title
-	         SetTitleMatchMode 2
-	     }
+         if RegExMatch(P_Class,"AbletonVstPlugClass") or RegExMatch(P_Class,"Vst3PlugWindow") or RegExMatch(P_Class,"JUCE_")
+	 {
+	     WinClose P_Title 
+             SetTitleMatchMode 2
+	 }
      }
 }
 
