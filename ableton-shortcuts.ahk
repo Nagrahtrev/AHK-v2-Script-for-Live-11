@@ -18,11 +18,7 @@ Persistent
 #SuspendExempt False
 
 ; Auto Switch to English IME when Ableton Live 11 is activated
-     ;; You can change the process name below, such as "Ableton Live 11 Suite.exe"
-     ;; If you want to add any other process, please follow this format and type the command on the next line
-     ;; GroupAdd "English", "ahk_exe [ProcessName]"
-GroupAdd "English", "ahk_exe Ableton Live 11 Suite.exe"
-
+GroupAdd "English", "ahk_id 7538222"
 MapIME := Map("EN", 67699721)
 GetCurrentIMEID()
 {
