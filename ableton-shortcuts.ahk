@@ -46,9 +46,9 @@ CapsLock::
 {
      KeyWait "CapsLock"
      if (A_ThisHotkey="CapsLock")
-          {
-          SetCapsLockState !GetKeyState("CapsLock", "T") ? True : False
-          }
+         {
+         SetCapsLockState !GetKeyState("CapsLock", "T") ? True : False
+         }
 }
 #HotIf GetKeyState("CapsLock", "P")
 Device(Name)
@@ -104,11 +104,11 @@ MyFunc(ThisHotkey)
      SetTitleMatchMode 3
      if RegExMatch(P_Process,"Ableton")
      {
-	      if RegExMatch(P_Class,"AbletonVstPlugClass") or RegExMatch(P_Class,"Vst3PlugWindow") or RegExMatch(P_Class,"JUCE_")
-	      {
-		       WinClose P_Title
-	       	   SetTitleMatchMode 2
-	      }
+	     if RegExMatch(P_Class,"AbletonVstPlugClass") or RegExMatch(P_Class,"Vst3PlugWindow") or RegExMatch(P_Class,"JUCE_")
+	     {
+		     WinClose P_Title
+	         SetTitleMatchMode 2
+	     }
      }
 }
 
@@ -142,23 +142,23 @@ F4::^4
      ;; SHIFT + [WheelUp/Dn], Increment/Decrement the Value, Move MIDI Notes by 1 Semitone
      +WheelUp::
      {
-          Send "{Up}"
+         Send "{Up}"
      }
 
      +WheelDown::
      {
-          Send "{Down}"
+         Send "{Down}"
      }
 
      ;; CTRL + SHIFT + [WheelUp/Dn], Finer Resolution, Move MIDI Notes by 1 Octave
      ^+WheelUp::
      {
-          Send "+{Up}"
+         Send "+{Up}"
      }
 
      ^+WheelDown::
      {
-          Send "+{Down}"
+         Send "+{Down}"
      }
 
 ; Key Mapping Optimization (Only for self-use Effect Racks and M4L Devices, you can delete it later)
