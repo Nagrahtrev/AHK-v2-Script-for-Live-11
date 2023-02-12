@@ -4,13 +4,44 @@
 ; ※ THIS SCRIPT REQUIRES AUTOHOTKEY V2 ※
 
 Persistent
+#SingleInstance force
 
-; You can change any hotkey to suit your preferences.
+; You can change any hotkey to suit your preferences
 ; Here is the list of keynames: https://www.autohotkey.com/docs/v2/KeyList.htm
+; Please read the documentation (https://www.autohotkey.com/docs/v2/) before customizing this script
 
 ; ----
 
-; Quick Insert Plugins | CAPSLOCK + [Key] (CapsLock will still work properly)
+; Suspend/Unsuspend all hotkeys | SHIFT + F12
+#SuspendExempt
++F12::Suspend
+#SuspendExempt False
+
+; Auto Switch to English IME when Ableton Live 11 is activated
+     ;; You can change the process name below, such as "Ableton Live 11 Suite.exe"
+     ;; If you want to add any other process, please follow this format and type the command on the next line
+     ;; GroupAdd "English", "ahk_exe [ProcessName]"
+GroupAdd "English", "ahk_exe Ableton Live 11 Suite.exe"
+
+MapIME := Map("EN", 67699721)
+GetCurrentIMEID()
+{
+     WinID := WinGetID("A")
+     ThreadID := DllCall("GetWindowThreadProcessId", "UInt", WinID, "UInt", 0)
+     InputLocaleID := DllCall("GetKeyboardLayout", "UInt", ThreadID, "UInt")
+     Return InputLocaleID
+}
+SetIME(ime_id)
+{
+     WinTitle := WinGetTitle("ahk_group English")
+     PostMessage(0x50, 0, ime_id,, WinTitle )
+}
+~LButton::
+{
+     SetIME(MapIME["EN"])
+}
+
+; Quick Insert Plugins | CAPSLOCK + [KeyName] (CapsLock will still work properly)
 CapsLock::
 {
      KeyWait "CapsLock"
@@ -28,7 +59,6 @@ Device(Name)
      Send "{Down}"
      Send "{Enter}"
 }
-
      ;; Customize it to any plugin you want!
      ;; [KeyName]::SendInput Device("[Device Name]")
      1::SendInput Device("EQ Eight")
@@ -46,10 +76,10 @@ Device(Name)
      e::SendInput Device("vst Nexus")
      r::SendInput Device("vst3 Serum")
 
-; The following directives only work on a specific process, such as "Ableton Live 11 Suite.exe", and you can totally change it
+; The following directives only work on a specific process, such as "Ableton Live 11 Suite.exe", you can totally change it
 #HotIf WinActive("ahk_exe Ableton Live 11 Suite.exe")
 
-; Quick Search VST Plugins | ALT + [F]
+; Quick Search VST Plugins | ALT + F
 !f::
 {
      Send "^f"
@@ -82,7 +112,7 @@ MyFunc(ThisHotkey)
      }
 }
 
-; Duplicate to 1 Bar | ALT + [D]
+; Duplicate to 1 Bar | ALT + D
 !d::
 {
      Send "^{d 7}"
@@ -131,7 +161,7 @@ F4::^4
           Send "+{Down}"
      }
 
-; Key Mapping Optimization (Only for Self-use Racks and M4L Devices, you can delete it later)
+; Key Mapping Optimization (Only for self-use Effect Racks and M4L Devices, you can delete it later)
 !z::[
 !x::]
 !m::;
