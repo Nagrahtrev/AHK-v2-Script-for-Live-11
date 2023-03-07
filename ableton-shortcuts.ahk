@@ -63,21 +63,21 @@ Device(Name)
      Send "{Enter}"
 }
      ;; Customize it to any plugin you want!
-     ;; [KeyName]::SendInput Device("[Device Name]")
-     1::SendInput Device("EQ Eight")
-     2::SendInput Device("Bass Phat Rack.adg")
-     3::SendInput Device("OTT.adv")
-     4::SendInput Device("Granulator II.amxd")
-     5::SendInput Device("")
-     6::SendInput Device("")
-     7::SendInput Device("")
-     8::SendInput Device("")
-     9::SendInput Device("")
-     0::SendInput Device("")
-     q::SendInput Device("")
-     w::SendInput Device("")
-     e::SendInput Device("vst Nexus")
-     r::SendInput Device("vst3 Serum")
+     ;; [KeyName]::SendInput Device("{Text}[Device Name]")
+     1::SendInput Device("{Text}EQ Eight")
+     2::SendInput Device("{Text}Bass Phat Rack.adg")
+     3::SendInput Device("{Text}OTT.adv")
+     4::SendInput Device("{Text}Granulator II.amxd")
+     5::SendInput Device("{Text}")
+     6::SendInput Device("{Text}")
+     7::SendInput Device("{Text}")
+     8::SendInput Device("{Text}[Device Name]")
+     9::SendInput Device("{Text}")
+     0::SendInput Device("{Text}")
+     q::SendInput Device("{Text}")
+     w::SendInput Device("{Text}")
+     e::SendInput Device("{Text}vst Nexus")
+     r::SendInput Device("{Text}vst3 Serum")
 
 ; The following directives only work on a specific process, such as "Ableton Live 11 Suite.exe", you can totally change it
 #HotIf WinActive("ahk_exe Ableton Live 11 Suite.exe")
@@ -169,7 +169,7 @@ F4::^4
          Loop
          {
              Send "+{Right}"
-             Sleep 50
+             Sleep 200
              State := GetKeyState("XButton2", "P")
              if (State = 0)
                  Break
@@ -182,7 +182,7 @@ F4::^4
          Loop
          {
              Send "+{Left}"
-             Sleep 50
+             Sleep 200
              State := GetKeyState("XButton1", "P")
              if (State = 0)
                  Break
