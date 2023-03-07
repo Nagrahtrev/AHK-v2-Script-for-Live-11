@@ -141,8 +141,8 @@ F2::^2
 F3::^3
 F4::^4
 
-; Change the Value of Knobs or Transpose MIDI Note Pitch with Mousewheel
-     ;; SHIFT + [WheelUp/Dn], Increment/Decrement the Value, Move MIDI Notes by 1 Semitone
+; Transpose MIDI Note Pitch or Change the Knob Value
+     ;; SHIFT + [WheelUp/Dn], Transpose Notes by Semitone, Increment/Decrement Value
      +WheelUp::
      {
          Send "{Up}"
@@ -153,7 +153,7 @@ F4::^4
          Send "{Down}"
      }
 
-     ;; CTRL + SHIFT + [WheelUp/Dn], Finer Resolution, Move MIDI Notes by 1 Octave
+     ;; CTRL + SHIFT + [WheelUp/Dn], Transpose Notes by Octave, Finer Resolution
      ^+WheelUp::
      {
          Send "+{Up}"
@@ -163,8 +163,35 @@ F4::^4
      {
          Send "+{Down}"
      }
+     ;; SHIFT + [XBUTTON2/XBUTTON1], Extend/Retract Notes, Finer Resolution
+     +XButton2::
+     {
+         Loop
+         {
+             Send "+{Right}"
+             Sleep 50
+             State := GetKeyState("XButton2", "P")
+             if (State = 0)
+                 Break
+             if (A_TimeSinceThisHotkey > 3000)
+                 Break
+         }
+     }
+     +XButton1::
+     {
+         Loop
+         {
+             Send "+{Left}"
+             Sleep 50
+             State := GetKeyState("XButton1", "P")
+             if (State = 0)
+                 Break
+             if (A_TimeSinceThisHotkey > 3000)
+                 Break
+         }
+     }     
 
-; Key Mapping Optimization (Only for self-use Effect Racks and M4L Devices, you can delete it later)
+; Key Mapping Optimization (Only for self-use Racks and M4L Devices, you can delete it later)
 !z::[
 !x::]
 !m::;
